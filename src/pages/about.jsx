@@ -5,8 +5,8 @@ import {
   Youtube, MessageCircle, MapPin, Phone, MessageSquare, ArrowUpRight 
 } from 'lucide-react';
 
-// 🚀 Founder Image Import
-import founderImg from '../assets/home/founder.png';
+// 🚀 Updated to .webp as requested
+import founderImg from '../assets/home/founder.webp';
 
 const About = () => {
   const features = [
@@ -23,8 +23,12 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen pt-24 md:pt-32 pb-16 px-4 md:px-6 font-sans overflow-x-hidden">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-white min-h-screen pb-16 font-sans overflow-x-hidden">
+      
+      {/* 🛡️ NAVBAR FIX: Solid Black Spacer */}
+      <div className="w-full h-[80px] md:h-[100px] bg-black" />
+
+      <div className="max-w-7xl mx-auto px-4 md:px-6 mt-12 md:mt-20">
         
         {/* --- 1. THE FOUNDER STORY --- */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-24 md:mb-32">
@@ -102,7 +106,7 @@ const About = () => {
           ))}
         </div>
 
-        {/* --- 3. THE CONTACT GRID (WhatsApp Focused) --- */}
+        {/* --- 3. THE CONTACT GRID --- */}
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-6 md:gap-8">
           <div className="lg:col-span-2 bg-slate-950 rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-20 text-white relative overflow-hidden group">
             <div className="relative z-10 space-y-10">
@@ -125,7 +129,6 @@ const About = () => {
             <div className="absolute -bottom-6 -right-6 opacity-[0.03] text-[35vw] md:text-[20vw] font-black italic pointer-events-none uppercase">GS</div>
           </div>
 
-          {/* 🚀 Updated Quick Chat Card: WhatsApp Instead of Mail */}
           <div className="bg-orange-600 rounded-[2.5rem] md:rounded-[4rem] p-10 md:p-12 flex flex-col justify-between text-white shadow-2xl shadow-orange-600/30">
              <div className="space-y-6">
                 <div className="w-14 h-14 md:w-16 md:h-16 bg-white/10 rounded-2xl md:rounded-3xl flex items-center justify-center">
@@ -144,7 +147,6 @@ const About = () => {
              </a>
           </div>
         </div>
-
       </div>
     </div>
   );

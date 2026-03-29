@@ -26,7 +26,7 @@ const AdminNavbar = ({ toggleSidebar }) => {
       <div className="flex items-center gap-4">
         <div className="text-right hidden sm:block">
           <p className="text-[10px] font-black uppercase tracking-widest text-slate-900 leading-none">
-            Aditya Gond
+            GS Brand
           </p>
           <p className="text-[8px] font-bold text-orange-600 uppercase tracking-tighter mt-1">
             Super Admin
