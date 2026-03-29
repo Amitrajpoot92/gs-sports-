@@ -1,4 +1,17 @@
-# Logs
+# --- Dependencies & Build ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# --- Environment Variables (Most Important for Security) ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# --- Logs ---
 logs
 *.log
 npm-debug.log*
@@ -7,19 +20,26 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-.env
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# --- System & OS Files ---
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# --- Editor / IDE ---
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- Build Tools & Frameworks ---
+.vite/
+.vercel/
+.netlify/
+
+# --- Testing ---
+/coverage/

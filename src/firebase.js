@@ -1,9 +1,9 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth"; // Auth के लिए
+import { getStorage } from "firebase/storage"; // फोटो अपलोड के लिए
 import { getAnalytics } from "firebase/analytics";
 
-// Environment variables ka use karke config setup
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -14,11 +14,11 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Analytics (Optional)
-const analytics = getAnalytics(app);
-
-// DATABASE INSTANCE EXPORT
+export const auth = getAuth(app); // इसे जोड़ें
 export const db = getFirestore(app);
+export const storage = getStorage(app); // इसे जोड़ें
+export const analytics = getAnalytics(app);
+
+export default app;
