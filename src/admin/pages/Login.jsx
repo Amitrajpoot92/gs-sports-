@@ -36,7 +36,7 @@ const AdminLogin = () => {
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
               <input 
-                type="email" required placeholder="ADMIN EMAIL"
+                type="email" required placeholder="ADMIN  I'D"
                 className="w-full bg-white border-2 border-transparent focus:border-orange-600/20 px-12 py-4 rounded-2xl font-bold text-xs outline-none transition-all"
                 onChange={(e) => setEmail(e.target.value)}
               />
