@@ -47,7 +47,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" onClick={() => setIsOpen(false)} className="relative z-[1001]">
             <h1 className="text-2xl md:text-3xl font-black text-white italic uppercase leading-none tracking-tighter">
-              GS<span className="text-orange-600">SPORTS</span>
+              GS<span className="text-orange-600">brand</span>
             </h1>
           </Link>
 

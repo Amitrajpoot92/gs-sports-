@@ -111,7 +111,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-[9px] font-black tracking-[0.4em] text-slate-400 uppercase">
-            © {currentYear} GS Sports Worldwide
+            © {currentYear} GS brand Worldwide
           </p>
 
           <a 
@@ -160,7 +160,7 @@ const Footer = () => {
               <div className="p-8 overflow-y-auto custom-scrollbar space-y-6 text-slate-600 font-medium text-sm leading-relaxed">
                 {modalType === 'privacy' ? (
                   <>
-                    <p>At <span className="font-black text-slate-900 italic">GS SPORTS</span>, we respect your privacy. This policy outlines how we handle your data.</p>
+                    <p>At <span className="font-black text-slate-900 italic">GS brand</span>, we respect your privacy. This policy outlines how we handle your data.</p>
                     <div className="space-y-4">
                       <h3 className="font-black text-slate-900 uppercase text-xs tracking-widest italic underline decoration-orange-600">1. Data Collection</h3>
                       <p>We collect only essential information required to process your orders, such as your Name, Phone Number, and Shipping Address.</p>
@@ -170,7 +170,7 @@ const Footer = () => {
                   </>
                 ) : (
                   <>
-                    <p>Welcome to the <span className="font-black text-slate-900 italic">GS SPORTS</span> arena. By using our store, you agree to the following terms:</p>
+                    <p>Welcome to the <span className="font-black text-slate-900 italic">GS brand</span> arena. By using our store, you agree to the following terms:</p>
                     <div className="space-y-4">
                       <h3 className="font-black text-slate-900 uppercase text-xs tracking-widest italic underline decoration-orange-600">1. Ordering Process</h3>
                       <p>All orders placed on the website are confirmed only after WhatsApp verification and payment confirmation.</p>

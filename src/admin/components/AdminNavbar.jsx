@@ -177,7 +177,7 @@ const AdminNavbar = ({ toggleSidebar }) => {
                 </button>
               </form>
               
-              <p className="text-[8px] font-black text-center text-slate-300 uppercase tracking-[0.4em] mt-8">GS Sports Security Protocol</p>
+              <p className="text-[8px] font-black text-center text-slate-300 uppercase tracking-[0.4em] mt-8">GS brand Security Protocol</p>
             </motion.div>
           </div>
         )}

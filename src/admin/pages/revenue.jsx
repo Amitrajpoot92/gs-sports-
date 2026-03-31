@@ -177,7 +177,7 @@ const Revenue = () => {
 
         {/* Footer info */}
         <div className="p-6 bg-slate-950 text-center">
-           <p className="text-[8px] font-black text-white/30 uppercase tracking-[0.6em]">GS SPORTS • TREASURY LOGS • SECURE ACCESS</p>
+           <p className="text-[8px] font-black text-white/30 uppercase tracking-[0.6em]">GS brand • TREASURY LOGS • SECURE ACCESS</p>
         </div>
       </div>
     </div>

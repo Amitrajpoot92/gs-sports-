@@ -114,7 +114,7 @@ const TrackOrder = () => {
                 </div>
 
                 <div className="flex-1 space-y-8 lg:pt-4">
-                  <StatusStep title="Order Placed" sub="Verified by GS Sports" icon={<Clock size={16}/>} done={true} />
+                  <StatusStep title="Order Placed" sub="Verified by GS brand" icon={<Clock size={16}/>} done={true} />
                   <StatusStep title="In Warehouse" sub="Packing your gear" icon={<Package size={16}/>} done={['confirmed', 'shipped', 'completed'].includes(order.status)} active={order.status === 'pending'} />
                   <StatusStep title="Dispatched" sub="On the way to your city" icon={<Truck size={16}/>} done={['shipped', 'completed'].includes(order.status)} active={order.status === 'shipped'} />
                   <StatusStep title="Delivered" sub="Gear reached destination" icon={<MapPin size={16}/>} done={order.status === 'completed'} isLast={true} />

@@ -177,7 +177,7 @@ const Orders = () => {
           </table>
         </div>
         <div className="p-6 bg-slate-900 text-center">
-           <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">GS SPORTS • ORDER INTELLIGENCE LOGS</p>
+           <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">GS brand • ORDER INTELLIGENCE LOGS</p>
         </div>
       </div>
 

@@ -161,7 +161,7 @@ const Customers = () => {
 
         {/* View More Placeholder / Footer */}
         <div className="p-6 bg-slate-900 text-center">
-           <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">GS SPORTS • INTERNAL DATABASE • END OF LOG</p>
+           <p className="text-[8px] font-black text-white/40 uppercase tracking-[0.5em]">GS brand • INTERNAL DATABASE • END OF LOG</p>
         </div>
       </div>
     </div>

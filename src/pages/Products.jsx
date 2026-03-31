@@ -268,7 +268,7 @@ const Products = () => {
                     </button>
                   </div>
                   
-                  <p className="text-center text-[8px] font-bold text-slate-300 uppercase tracking-widest pt-2">GS SPORTS • Premium Gear</p>
+                  <p className="text-center text-[8px] font-bold text-slate-300 uppercase tracking-widest pt-2">GS brand • Premium Gear</p>
                 </div>
               </div>
             </motion.div>

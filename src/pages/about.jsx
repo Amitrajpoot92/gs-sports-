@@ -138,7 +138,7 @@ const About = () => {
                 <p className="text-white/70 font-bold text-[10px] md:text-[11px] uppercase tracking-widest leading-relaxed">For bulk orders, custom gear, or any professional queries, chat with us directly.</p>
              </div>
              <a 
-               href="https://wa.me/918507949676?text=Hi GS Sports, I have a bulk inquiry." 
+               href="https://wa.me/918507949676?text=Hi GS brand, I have a bulk inquiry." 
                target="_blank"
                rel="noopener noreferrer"
                className="mt-8 flex items-center justify-between bg-white text-slate-900 p-5 md:p-6 rounded-2xl md:rounded-3xl font-black uppercase text-[10px] md:text-xs tracking-widest hover:bg-slate-900 hover:text-white transition-all group"
