@@ -3,13 +3,12 @@ import { useAuth } from "./AuthContext";
 import { db } from "../firebase";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 
-const CartContext = createContext();
+const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useAuth();
 
-  // 🔄 रियल-टाइम डेटाबेस सिंक (Firestore से कार्ट लाना)
   useEffect(() => {
     if (!user) {
       setCartItems([]);
@@ -28,7 +27,6 @@ export const CartProvider = ({ children }) => {
     return () => unsubscribe();
   }, [user]);
 
-  // 🚀 हेल्पर: डेटाबेस में कार्ट अपडेट करना
   const updateDBCart = async (newItems) => {
     if (!user) return;
     try {
@@ -82,11 +80,19 @@ export const CartProvider = ({ children }) => {
     await updateDBCart([]);
   };
 
+  const value = { cartItems, addToCart, removeFromCart, updateQty, clearCart };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQty, clearCart }}>
+    <CartContext.Provider value={value}>
       {children}
     </CartContext.Provider>
   );
 };
 
-export const useCart = () => useContext(CartContext);
+export function useCart() {
+  const context = useContext(CartContext);
+  if (context === null) {
+    throw new Error("useCart must be used within a CartProvider");
+  }
+  return context;
+}

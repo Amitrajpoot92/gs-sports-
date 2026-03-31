@@ -7,9 +7,9 @@ import {
   signOut,
   updateProfile 
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
         try {
           const userDoc = await getDoc(doc(db, "users", currentUser.uid));
           if (userDoc.exists()) {
-            // 🔥 यहाँ हम असली डेटा (Name, Email) यूजर स्टेट में डाल रहे हैं
             setUser({ ...currentUser, ...userDoc.data() });
           } else {
             setUser(currentUser);
@@ -39,17 +38,22 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const signup = async (email, password, name) => {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    await setDoc(doc(db, "users", res.user.uid), {
-      uid: res.user.uid,
-      name: name,
-      email: email,
-      role: "user",
-      createdAt: new Date().toISOString()
-    });
-    await updateProfile(res.user, { displayName: name });
-    return res;
+  const signup = async (email, password, name, phoneNumber) => {
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        name: name,
+        email: email,
+        phone: phoneNumber || "Not Provided",
+        role: "user",
+        createdAt: serverTimestamp()
+      });
+      await updateProfile(res.user, { displayName: name });
+      return res;
+    } catch (error) {
+      throw error;
+    }
   };
 
   const login = (email, password) => {
@@ -60,18 +64,25 @@ export const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setUser(null);
-      // लोकल स्टोरेज साफ़ करें
       localStorage.clear();
     } catch (error) {
       console.error("Logout Error:", error);
     }
   };
 
+  const value = { user, login, signup, logout };
+
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={value}>
       {!loading && children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === null) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+}

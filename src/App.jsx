@@ -22,6 +22,10 @@ import AllProducts from "./admin/pages/AllProducts";
 import Orders from "./admin/pages/Orders";
 import AdminLogin from "./admin/pages/Login";
 
+// 🚀 New Admin Pages Imports
+import Revenue from "./admin/pages/revenue";
+import Customers from "./admin/pages/customers";
+
 // 🛡️ ENHANCED PROTECTED ROUTE
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -56,12 +60,12 @@ function App() {
         <Router>
           <Routes>
             
-            {/* 🔑 1. ADMIN LOGIN - इसे सबसे बाहर और स्वतंत्र रखें */}
+            {/* 🔑 1. ADMIN LOGIN */}
             <Route path="/admin/login" element={<AdminLogin />} />
 
             {/* 🛡️ 2. PROTECTED ADMIN PANEL */}
             <Route 
-              path="/admin/*" // 👈 यहाँ '*' लगाया ताकि इसके अंदर के सारे सब-रूट्स प्रोटेक्टेड रहें
+              path="/admin/*" 
               element={
                 <ProtectedRoute> 
                   <AdminLayout /> 
@@ -74,6 +78,10 @@ function App() {
               <Route path="add-product" element={<AddProduct />} />
               <Route path="all-products" element={<AllProducts />} />
               <Route path="orders" element={<Orders />} />
+              
+              {/* 🚀 NEW PROTECTED ROUTES ADDED HERE */}
+              <Route path="revanue" element={<Revenue />} />
+              <Route path="customer" element={<Customers />} />
             </Route>
 
             {/* 🌐 3. PUBLIC WEBSITE ROUTES */}
@@ -90,7 +98,6 @@ function App() {
                       <Route path="/checkout" element={<Checkout />} />
                       <Route path="/track-order" element={<TrackOrder />} />
                       <Route path="/about" element={<About />} /> 
-                      {/* अगर कोई गलत URL डाले तो होम पर भेज दो */}
                       <Route path="*" element={<Navigate to="/" replace />} />
                     </Routes>
                   </main>

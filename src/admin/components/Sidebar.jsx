@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutGrid, PlusCircle, ShoppingBag, 
-  Package, X, LogOut 
+  Package, X, LogOut, IndianRupee, Users 
 } from "lucide-react";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
@@ -15,17 +15,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     { name: "Add Gear", path: "/admin/add-product", icon: <PlusCircle size={20} /> },
     { name: "Inventory", path: "/admin/all-products", icon: <Package size={20} /> },
     { name: "Orders", path: "/admin/orders", icon: <ShoppingBag size={20} /> },
+    { name: "Revenue", path: "/admin/revanue", icon: <IndianRupee size={20} /> },
+    { name: "Customers", path: "/admin/customer", icon: <Users size={20} /> },
   ];
 
   const handleLogout = async () => {
-    if (window.confirm("Do you want to exit the system?")) {
-      await signOut(auth);
+    if (window.confirm("Bhai, do you want to exit the system?")) {
+      try {
+        await signOut(auth);
+      } catch (error) {
+        console.error("Logout Error:", error);
+      }
     }
   };
 
   return (
     <>
-      {/* 1. Mobile Overlay - Only visible when open */}
+      {/* 1. Mobile Overlay */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[150] lg:hidden" 
@@ -37,8 +43,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <aside className={`
         fixed top-0 left-0 h-screen z-[200] bg-slate-950 text-white 
         transition-all duration-300 ease-in-out border-r border-white/5
-        /* Mobile Logic: Hidden (-translate) unless isOpen is true */
-        /* Desktop Logic: Sticky and always visible (w-24 or w-72) */
         ${isOpen 
           ? "w-72 translate-x-0" 
           : "-translate-x-full lg:translate-x-0 lg:sticky lg:w-24 xl:w-72"
@@ -58,15 +62,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </h2>
           </div>
           
-          <button onClick={toggleSidebar} className="lg:hidden p-2 text-slate-400">
+          <button onClick={toggleSidebar} className="lg:hidden p-2 text-slate-400 hover:text-white transition-colors">
             <X size={24} />
           </button>
         </div>
 
-        {/* Navigation - Hidden Overflow to prevent text leak */}
-        <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto overflow-x-hidden">
+        {/* Navigation */}
+        <nav className="flex-1 px-4 py-8 space-y-2 overflow-y-auto overflow-x-hidden custom-scrollbar">
           {menuItems.map((item) => {
             const isActive = location.pathname === item.path;
+            
             return (
               <Link
                 key={item.name}
@@ -76,30 +81,32 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   flex items-center gap-4 px-4 py-4 rounded-2xl transition-all relative group
                   ${isActive 
                     ? "bg-orange-600 text-white shadow-lg shadow-orange-600/20" 
-                    : "text-slate-400 hover:bg-white/5"
+                    : "text-slate-400 hover:bg-white/5 hover:text-white"
                   }
                 `}
               >
                 <div className="shrink-0">{item.icon}</div>
                 
-                {/* Text Labels - Visible only when open or on XL screen */}
+                {/* 🚀 Text Label Fix: Only visible on Mobile-Open or Large Desktop */}
                 <span className={`
                   text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all duration-300
-                  ${isOpen ? "opacity-100 visible" : "lg:opacity-0 lg:invisible xl:opacity-100 xl:visible"}
+                  ${isOpen ? "opacity-100 block" : "hidden xl:block"}
                 `}>
                   {item.name}
                 </span>
+                
+                {/* Note: I removed the extra <div> tooltip that was causing the duplicate text on hover */}
               </Link>
             );
           })}
         </nav>
 
-        {/* Logout - Hidden Text when closed */}
+        {/* Logout Section */}
         <div className="p-4 border-t border-white/5">
-          <button onClick={handleLogout} className="flex items-center gap-4 px-4 py-4 w-full text-slate-500 hover:text-red-500 transition-colors">
+          <button onClick={handleLogout} className="flex items-center gap-4 px-4 py-4 w-full text-slate-500 hover:text-red-500 transition-colors group">
             <LogOut size={20} className="shrink-0" />
             <span className={`text-[10px] font-black uppercase tracking-widest transition-all
-              ${isOpen ? "opacity-100 visible" : "lg:opacity-0 lg:invisible xl:opacity-100 xl:visible"}`}>
+              ${isOpen ? "opacity-100 block" : "hidden xl:block"}`}>
               Exit System
             </span>
           </button>
